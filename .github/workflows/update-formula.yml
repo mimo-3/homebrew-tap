@@ -1,0 +1,61 @@
+name: Update Formula
+
+on:
+  repository_dispatch:
+    types: [update-formula]
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update Formula
+        run: |
+          VERSION="${{ github.event.client_payload.version }}"
+          VERSION_NUM="${VERSION#v}"
+          ARM64_SHA="${{ github.event.client_payload.arm64_sha256 }}"
+          X86_64_SHA="${{ github.event.client_payload.x86_64_sha256 }}"
+
+          cat > Formula/notion-cli.rb << 'FORMULA'
+          class NotionCli < Formula
+            desc "A CLI for the Notion API"
+            homepage "https://github.com/mimo-3/notion-cli"
+            version "VERSION_PLACEHOLDER"
+            license "MIT"
+
+            on_macos do
+              on_arm do
+                url "https://github.com/mimo-3/notion-cli/releases/download/vVERSION_PLACEHOLDER/notion-cli-aarch64-apple-darwin.tar.gz"
+                sha256 "ARM64_SHA_PLACEHOLDER"
+              end
+              on_intel do
+                url "https://github.com/mimo-3/notion-cli/releases/download/vVERSION_PLACEHOLDER/notion-cli-x86_64-apple-darwin.tar.gz"
+                sha256 "X86_64_SHA_PLACEHOLDER"
+              end
+            end
+
+            def install
+              bin.install "notion"
+            end
+
+            test do
+              assert_match "notion-cli", shell_output("#{bin}/notion --version")
+            end
+          end
+          FORMULA
+
+          sed -i "s/VERSION_PLACEHOLDER/$VERSION_NUM/g" Formula/notion-cli.rb
+          sed -i "s/ARM64_SHA_PLACEHOLDER/$ARM64_SHA/g" Formula/notion-cli.rb
+          sed -i "s/X86_64_SHA_PLACEHOLDER/$X86_64_SHA/g" Formula/notion-cli.rb
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Formula/notion-cli.rb
+          git commit -m "Update notion-cli to ${{ github.event.client_payload.version }}"
+          git push

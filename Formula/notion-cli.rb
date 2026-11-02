@@ -1,17 +1,17 @@
 class NotionCli < Formula
   desc "A CLI for the Notion API"
   homepage "https://github.com/mimo-3/notion-cli"
-  version "0.2.1"
+  version "0.3.0"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/mimo-3/notion-cli/releases/download/v0.2.1/notion-cli-aarch64-apple-darwin.tar.gz"
-      sha256 "51fff2eeabd3a82b69d6c80cb6d0789c59fe443dde0beff4797f663084bf6b35"
+      url "https://github.com/mimo-3/notion-cli/releases/download/v0.3.0/notion-cli-aarch64-apple-darwin.tar.gz"
+      sha256 "8ff51f44e47f9a661934ac4f951ecf50cceb97d8d41a0a8f3378ff7fa8faa2b7"
     end
     on_intel do
-      url "https://github.com/mimo-3/notion-cli/releases/download/v0.2.1/notion-cli-x86_64-apple-darwin.tar.gz"
-      sha256 "2b4eca7aa37f5aff26814492cc3ef9163f92866ec9e7ec4555cdb94a34feefa3"
+      url "https://github.com/mimo-3/notion-cli/releases/download/v0.3.0/notion-cli-x86_64-apple-darwin.tar.gz"
+      sha256 "b2dea6cfcdd87f76a30959601cd7150c9335cd5330a2755a778873ad5710cf63"
     end
   end
 

@@ -1,17 +1,17 @@
 class SlackCli < Formula
   desc "CLI for the Slack Web API"
   homepage "https://github.com/mimo-3/slack-cli"
-  version "0.2.1"
+  version "0.3.0"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/mimo-3/slack-cli/releases/download/v0.2.1/slack-cli-aarch64-apple-darwin.tar.gz"
-      sha256 "2619c19c545ee12265d61dd29cb854f7ea2ee89459efccad06194f61ebb35654"
+      url "https://github.com/mimo-3/slack-cli/releases/download/v0.3.0/slack-cli-aarch64-apple-darwin.tar.gz"
+      sha256 "dce2352f00e2b710062aa9046c63109d5f6b41c05f1e4aeb2377822ac5b19f83"
     end
     on_intel do
-      url "https://github.com/mimo-3/slack-cli/releases/download/v0.2.1/slack-cli-x86_64-apple-darwin.tar.gz"
-      sha256 "addb2180005bf31deef103037af06581b5ed45854126c1a1edb0627e522e1dd4"
+      url "https://github.com/mimo-3/slack-cli/releases/download/v0.3.0/slack-cli-x86_64-apple-darwin.tar.gz"
+      sha256 "5650af2fe2ecece201e9c9c3009c9ca69eaf32a4a422c291e701061f5ba84afb"
     end
   end
 
